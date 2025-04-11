@@ -28,7 +28,7 @@ export const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 ">
             <p className="text-white">Follow us </p>
             <div className="lg:flex lg:gap-3 flex flex-col gap-3">
               <p className="text-white">Facebook</p>

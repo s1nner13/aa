@@ -1,9 +1,9 @@
 "use client";
 import { Footer } from "../_components/Footer";
+import Link from "next/link";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Pagg } from "../_components/Pagination";
-import Link from "next/link";
 
 const ACCESS_TOKEN =
   "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxYzgxODUwMTFjZDUyNTJiNGViY2I4ZjA4OWJkMWRlOSIsIm5iZiI6MTc0MzQwMzI2OS43NjYsInN1YiI6IjY3ZWEzOTA1YTk4ZGM4MTNiMGY3MDQxMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.j1XLqvV8qnfJkxisJJn-f7LvyMPNnPkMeUkdvzEL3mU";
@@ -36,7 +36,7 @@ export default function Home() {
   useEffect(() => {
     const getMoviesByAxios = async () => {
       const { data } = await axios.get<Response>(
-        `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=${page}`,
+        `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${page}`,
         {
           headers: {
             Authorization: `Bearer ${ACCESS_TOKEN}`,
@@ -45,7 +45,6 @@ export default function Home() {
       );
       setMovies(data.results);
       settotalPages(data.total_pages);
-      console.log("Fetched movies:", data.results);
     };
     getMoviesByAxios();
   }, [page]);
@@ -53,7 +52,7 @@ export default function Home() {
     <div className=" w-full flex  flex-col items-center">
       <div className="w-[335px] lg:w-[1440px] lg:flex lg:flex-col lg:gap-8 lg:px-20 ">
         <div className="flex justify-between items-center">
-          <p className="text-[24px] font-semibold">Upcoming</p>
+          <p className="text-[24px] font-semibold">Popular</p>
         </div>
         <div className="grid grid-cols-2 gap-5 mt-[40px] lg:grid lg:grid-cols-5 lg:gap-8 ">
           {movies.map((movie) => (
